@@ -28,6 +28,10 @@ Organize seu código em classes e métodos, promovendo a reutilização e a enca
    ```
    pip install -r requirements.txt
    ```
+3. Atualizar as dependências.
+   ```
+    pip install --upgrade -r requirements.txt
+   ```
 3. Execute o projeto a partir do arquivo principal.
    ```
    python bot.py
