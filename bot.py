@@ -30,20 +30,30 @@ class Bot(WebBot):
         try:
             self.configuration_browser()
             self.start_browser_bot()
-
+            maestro.alert(
+                task_id= execution.task_id,
+                title= "Iniciando automação",
+                message= "This is an info alert",
+                alert_type= AlertType.INFO
+            )
         except Exception as ex:
             print("Error: ", ex)
             self.save_screenshot("erro.png")
         finally:
             self.wait(3000)
             self.stop_browser()
+            # maestro.alert(
+            #     task_id= execution.task_id,
+            #     title= "Finalizou automação",
+            #     message= "This is an info alert",
+            #     alert_type= AlertType.INFO
+            # )
 
-        # Uncomment to mark this task as finished on BotMaestro
-        # maestro.finish_task(
-        #     task_id=execution.task_id,
-        #     status=AutomationTaskFinishStatus.SUCCESS,
-        #     message="Task Finished OK."
-        # )
+    # maestro.finish_task(
+    #     task_id=execution.task_id,
+    #     status=AutomationTaskFinishStatus.SUCCESS,
+    #     message="Task Finished OK."
+    # )
 
     def not_found(self, label):
         print(f"Element not found: {label}")
