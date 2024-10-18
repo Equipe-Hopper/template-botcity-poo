@@ -36,9 +36,17 @@ class Bot(WebBot):
                 message= "This is an info alert",
                 alert_type= AlertType.INFO
             )
+            
+            finshed_status =  AutomationTaskFinishStatus.SUCCESS
+            finish_message = "Tarefa finalizada com sucesso"
+            
         except Exception as ex:
             print("Error: ", ex)
             self.save_screenshot("erro.png")
+            
+            finshed_status =  AutomationTaskFinishStatus.FAILED
+            finish_message = "Tarefa finalizada com erro"
+            
         finally:
             self.wait(3000)
             self.stop_browser()
@@ -48,12 +56,12 @@ class Bot(WebBot):
             #     message= "This is an info alert",
             #     alert_type= AlertType.INFO
             # )
-
-    # maestro.finish_task(
-    #     task_id=execution.task_id,
-    #     status=AutomationTaskFinishStatus.SUCCESS,
-    #     message="Task Finished OK."
-    # )
+            maestro.finish_task(
+                task_id=execution.task_id,
+                status= finshed_status,
+                message= finish_message
+            )
+    
 
     def not_found(self, label):
         print(f"Element not found: {label}")
