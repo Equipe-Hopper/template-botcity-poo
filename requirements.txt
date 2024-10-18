@@ -3,3 +3,4 @@ botcity-framework-core==1.2.1
 botcity-framework-web==0.9.0
 botcity-http-plugin==0.1.4
 botcity-maestro-sdk==0.5.1
+webdriver_manager==4.0.2
