@@ -12,7 +12,7 @@ class Bot(WebBot):
         self.browser = Browser.CHROME
         self.driver_path = ChromeDriverManager().install()
 
-    def start_browser_bot(self, url="https://forms.gle/AtSn2QZEHqjffDKc6"):
+    def start_browser_bot(self, url="https://www.botcity.dev"):
         try:
             self.browse(url)
         except Exception as ex:
@@ -36,20 +36,7 @@ class Bot(WebBot):
                 message="This is an info alert",
                 alert_type=AlertType.INFO
             )
-
-            self.find_element('/html/body/div/div[3]/form/div[2]/div/div[2]/div[1]/div/div/div[2]/div', By.XPATH).send_keys('Kamila')
-            self.tab
-            self.send_keys('kamila.souza@ifam.edu.br')
-            self.tab
-            self.send_keys('Rua dormideira')
-            self.tab
-            self.send_keys('(92)99239-5946')
-            self.tab
-            self.tab
-            self.enter
-        
-
-
+           
             finshed_status = AutomationTaskFinishStatus.SUCCESS
 
             finish_message = "Tarefa finalizada com sucesso"
