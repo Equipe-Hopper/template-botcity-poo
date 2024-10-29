@@ -1,8 +1,8 @@
+from webdriver_manager.chrome import ChromeDriverManager
 from botcity.web import WebBot, Browser, By
 from botcity.maestro import *
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 class Bot(WebBot):
@@ -31,11 +31,12 @@ class Bot(WebBot):
             self.configuration_browser()
             self.start_browser_bot()
             maestro.alert(
-                task_id= execution.task_id,
-                title= "Iniciando automação",
-                message= "This is an info alert",
-                alert_type= AlertType.INFO
+                task_id=execution.task_id,
+                title="Iniciando automação",
+                message="This is an info alert",
+                alert_type=AlertType.INFO
             )
+
             self.find_element('/html/body/div/div[3]/form/div[2]/div/div[2]/div[1]/div/div/div[2]/div', By.XPATH).send_keys('Kamila')
             self.tab
             self.send_keys('kamila.souza@ifam.edu.br')
@@ -46,16 +47,20 @@ class Bot(WebBot):
             self.tab
             self.tab
             self.enter
-            finshed_status =  AutomationTaskFinishStatus.SUCCESS
+        
+
+
+            finshed_status = AutomationTaskFinishStatus.SUCCESS
+
             finish_message = "Tarefa finalizada com sucesso"
-            
+
         except Exception as ex:
             print("Error: ", ex)
             self.save_screenshot("erro.png")
-            
-            finshed_status =  AutomationTaskFinishStatus.FAILED
+
+            finshed_status = AutomationTaskFinishStatus.FAILED
             finish_message = "Tarefa finalizada com erro"
-            
+
         finally:
             self.wait(3000)
             self.stop_browser()
@@ -67,10 +72,9 @@ class Bot(WebBot):
             # )
             maestro.finish_task(
                 task_id=execution.task_id,
-                status= finshed_status,
-                message= finish_message
+                status=finshed_status,
+                message=finish_message
             )
-    
 
     def not_found(self, label):
         print(f"Element not found: {label}")
