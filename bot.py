@@ -1,6 +1,7 @@
 from webdriver_manager.chrome import ChromeDriverManager
 from botcity.web import WebBot, Browser, By
 from botcity.maestro import *
+from modules.maestro import MaestroAlerts
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
@@ -24,6 +25,7 @@ class Bot(WebBot):
         maestro = BotMaestroSDK.from_sys_args()
         execution = maestro.get_execution()
 
+        maestro_actions = MaestroAlerts(maestro, execution.task_id)
         print(f"Task ID is: {execution.task_id}")
         print(f"Task Parameters are: {execution.parameters}")
 
@@ -36,7 +38,7 @@ class Bot(WebBot):
                 message="This is an info alert",
                 alert_type=AlertType.INFO
             )
-           
+
             finshed_status = AutomationTaskFinishStatus.SUCCESS
 
             finish_message = "Tarefa finalizada com sucesso"
