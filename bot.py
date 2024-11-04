@@ -32,12 +32,7 @@ class Bot(WebBot):
         try:
             self.configuration_browser()
             self.start_browser_bot()
-            maestro.alert(
-                task_id=execution.task_id,
-                title="Iniciando automação",
-                message="This is an info alert",
-                alert_type=AlertType.INFO
-            )
+            maestro_actions.alert_info("Iniciando a automaçao","Automaçao está iniciando...")
 
             finshed_status = AutomationTaskFinishStatus.SUCCESS
 
@@ -46,6 +41,7 @@ class Bot(WebBot):
         except Exception as ex:
             print("Error: ", ex)
             self.save_screenshot("erro.png")
+            maestro_actions.alert_error(ex)
 
             finshed_status = AutomationTaskFinishStatus.FAILED
             finish_message = "Tarefa finalizada com erro"
@@ -53,17 +49,9 @@ class Bot(WebBot):
         finally:
             self.wait(3000)
             self.stop_browser()
-            # maestro.alert(
-            #     task_id= execution.task_id,
-            #     title= "Finalizou automação",
-            #     message= "This is an info alert",
-            #     alert_type= AlertType.INFO
-            # )
-            maestro.finish_task(
-                task_id=execution.task_id,
-                status=finshed_status,
-                message=finish_message
-            )
+
+            maestro_actions.alert_info(finish_message,finish_message)
+            maestro_actions.finish_task(finshed_status,finish_message)
 
     def not_found(self, label):
         print(f"Element not found: {label}")

@@ -14,22 +14,11 @@ class MaestroAlerts:
             message=mensagem,
             alert_type=AlertType.INFO
         )
-        print(f"ESSE É O TASK ID: {self.execution}")
-
-    def alert_success(self, titulo: str, mensagem: str):
+    def alert_error(self, mensagem: str):
 
         self.maestro.alert(
             task_id=self.execution,
-            title=titulo,
-            message=mensagem,
-            alert_type=AlertType.INFO
-        )
-
-    def alert_error(self, titulo: str, mensagem: str):
-
-        self.maestro.alert(
-            task_id=self.execution,
-            title=titulo,
+            title="Tarefa finalizada com ERRO",
             message=mensagem,
             alert_type=AlertType.ERROR
         )
